@@ -1,5 +1,6 @@
+#profile-title: SYRIATEL GAME BUNDLE
 #profile-update-interval: 1
-#subscription-userinfo: upload=0; download=0; total=2048; expire=4096
+#subscription-userinfo: upload=0; download=0; total=2048; expire=2546249531
 #support-url: https://github.com/omar-haidar/Update/edit/host/v2ray-servers
 
 vless://I_Love_%F0%9F%87%B5%F0%9F%87%B8_SSHMax_9dc4bd5@support.pubg.com:443?path=%2Fvless&security=tls&encryption=none&host=fr1.vless.site&type=ws&sni=fr1.vless.site#pubg-france-%F0%9F%87%AB%F0%9F%87%B7
