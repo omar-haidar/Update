@@ -3,42 +3,76 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Speed Test</title>
+  <title>Internet Speed Test</title>
   <style>
     body {
-      font-family: sans-serif;
-      background: #f4f4f4;
-      text-align: center;
-      padding: 50px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
     }
+
     .card {
-      background: #fff;
-      padding: 40px;
-      border-radius: 10px;
-      display: inline-block;
-      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      background: white;
+      padding: 40px 60px;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+      text-align: center;
     }
+
     h1 {
       margin-bottom: 30px;
+      color: #333;
     }
-    .metric {
-      font-size: 1.5em;
-      margin: 10px 0;
-    }
-    .value {
-      font-weight: bold;
-      color: #007bff;
-    }
-    button {
+
+    .results {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
       margin-top: 20px;
-      padding: 10px 25px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    .box {
+      flex: 1;
+      min-width: 120px;
+      background: #f7f7f7;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .box.ping { border-left: 6px solid #f78fb3; }
+    .box.download { border-left: 6px solid #63cdda; }
+    .box.upload { border-left: 6px solid #786fa6; }
+
+    .label {
+      font-size: 1em;
+      margin-bottom: 8px;
+      color: #666;
+    }
+
+    .value {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #222;
+    }
+
+    button {
+      padding: 12px 30px;
       font-size: 16px;
       border: none;
       background: #007bff;
       color: white;
-      border-radius: 5px;
+      border-radius: 8px;
       cursor: pointer;
+      transition: background 0.3s;
     }
+
     button:hover {
       background: #0056b3;
     }
@@ -47,9 +81,23 @@
 <body>
   <div class="card">
     <h1>Internet Speed Test</h1>
-    <div class="metric">Download: <span id="dl" class="value">--</span> Mbps</div>
-    <div class="metric">Upload: <span id="ul" class="value">--</span> Mbps</div>
-    <div class="metric">Ping: <span id="ping" class="value">--</span> ms</div>
+    <div class="results">
+      <div class="box ping">
+        <div class="label">Ping</div>
+        <div id="ping" class="value">--</div>
+        <div class="label">ms</div>
+      </div>
+      <div class="box download">
+        <div class="label">Download</div>
+        <div id="dl" class="value">--</div>
+        <div class="label">Mbps</div>
+      </div>
+      <div class="box upload">
+        <div class="label">Upload</div>
+        <div id="ul" class="value">--</div>
+        <div class="label">Mbps</div>
+      </div>
+    </div>
     <button onclick="startTest()">Start Test</button>
   </div>
 
@@ -64,7 +112,7 @@
     };
 
     s.onend = () => {
-      console.log("Test complete");
+      console.log("Test finished");
     };
 
     function startTest() {
