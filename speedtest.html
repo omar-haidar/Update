@@ -6,7 +6,7 @@
   <title>Internet Speed Test</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       background: #f0f2f5;
       display: flex;
       justify-content: center;
@@ -21,6 +21,8 @@
       border-radius: 15px;
       box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
       text-align: center;
+      max-width: 500px;
+      width: 100%;
     }
 
     h1 {
@@ -101,7 +103,9 @@
     <button onclick="startTest()">Start Test</button>
   </div>
 
+  <!-- LibreSpeed JS from CDN -->
   <script src="https://librespeed.org/speedtest/speedtest.js"></script>
+
   <script>
     let s = new Speedtest();
 
@@ -112,10 +116,11 @@
     };
 
     s.onend = () => {
-      console.log("Test finished");
+      console.log("Speed test finished");
     };
 
     function startTest() {
+      s.abort(); // Restart if already running
       s.start();
     }
   </script>
