@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Speed Test</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f4f4f4;
+      text-align: center;
+      padding: 50px;
+    }
+    .card {
+      background: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    h1 {
+      margin-bottom: 30px;
+    }
+    .metric {
+      font-size: 1.5em;
+      margin: 10px 0;
+    }
+    .value {
+      font-weight: bold;
+      color: #007bff;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 25px;
+      font-size: 16px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Internet Speed Test</h1>
+    <div class="metric">Download: <span id="dl" class="value">--</span> Mbps</div>
+    <div class="metric">Upload: <span id="ul" class="value">--</span> Mbps</div>
+    <div class="metric">Ping: <span id="ping" class="value">--</span> ms</div>
+    <button onclick="startTest()">Start Test</button>
+  </div>
+
+  <script src="https://librespeed.org/speedtest/speedtest.js"></script>
+  <script>
+    let s = new Speedtest();
+
+    s.onupdate = data => {
+      document.getElementById("dl").textContent = (data.dlStatus || 0).toFixed(2);
+      document.getElementById("ul").textContent = (data.ulStatus || 0).toFixed(2);
+      document.getElementById("ping").textContent = (data.pingStatus || 0).toFixed(1);
+    };
+
+    s.onend = () => {
+      console.log("Test complete");
+    };
+
+    function startTest() {
+      s.start();
+    }
+  </script>
+</body>
+</html>
